@@ -1,17 +1,28 @@
 <% layout('layouts/boilerplate') -%>
 <body>
-    <h3>Listing Details : </h3>
-   <u class="show">
-    <li><%= listings.title %></li>
-    <li><%= listings.description %></li>
-    <li>&#8377; <%= listings.price.toLocaleString(); %></li>
-    <li><%= listings.location %></li>
-    <li><%= listings.country %></li> 
-</u> 
-<br>
-<a href="<%=listings._id%>/edit">Edit</a>
-<br>
-<form method="post" action="<%=listings._id%>?_method=DELETE">
-    <button>Delete List</button>
+   
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+    <div class="card col-6 offset-2">
+        <h3>Listing Details : </h3>
+        <img src="<%= listings.image && listings.image.url ? listings.image.url : 'https://via.placeholder.com/150' %>" class="card-img-top show-img" alt="listing">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">
+            <b><%= listings.title %></b><br>
+            <%= listings.description %> <br>
+            &#8377; <%= listings.price.toLocaleString(); %> <br>
+            <%= listings.location %> <br>
+            <%= listings.country %> <br>
+        </p>
+        </div>
+      </div>
+   <div class="btns">
+    <a href="<%=listings._id%>/edit" class="btn btn-dark offset-2 col-1 edit-btn">Edit</a> 
+    <form method="post" action="<%=listings._id%>?_method=DELETE">
+    <button class="btn btn-dark offset-4">Delete</button>
+   </div>
 </form>
+</div>
+</div>
 </body>
