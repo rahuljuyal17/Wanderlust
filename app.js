@@ -14,6 +14,8 @@ app.use(methodOverride("_method"));
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
+
+//connected to DB
 const MONGO_URL="mongodb://127.0.0.1:27017/Wanderlust"
 async function main(){
     await mongoose.connect(MONGO_URL);
@@ -24,6 +26,7 @@ main().then(()=>{
     console.log(err);
 });
 
+//Home page
 app.get("/",(req,res)=>{
     res.render("listing/start.ejs");
 });
@@ -34,16 +37,19 @@ app.get("/listings", async (req, res) => {
     res.render("listing/index.ejs", { allistings });
 });
 
+//new listing
 app.get("/listings/new",(req,res)=>{
     res.render("listing/new.ejs");
 });
 
+//send info from ID
 app.get("/listings/:id", async (req,res)=>{
     let {id}=req.params;
     const listings = await Listing.findById(id);
     res.render("listing/show.ejs", { listings });
 });
 
+//edit Listing
 app.get("/listings/:id/edit", async (req,res)=>{
     let {id}=req.params;
     const listings = await Listing.findById(id);
@@ -65,12 +71,14 @@ app.post("/listings", async (req, res) => {
     }
 });
 
+//Update the list and back to main page
 app.put("/listings/:id",async (req,res)=>{
     let {id}= req.params;
     const listings = await Listing.findByIdAndUpdate(id, req.body.listing);
     res.redirect(`/listings/${id}`);
 });
 
+//Delete a listing
 app.delete("/listings/:id",async (req,res)=>{
     let {id}= req.params;
     let deletelisting = await Listing.findByIdAndDelete(id);
@@ -78,6 +86,7 @@ app.delete("/listings/:id",async (req,res)=>{
     res.redirect("/listings");
 });
 
+//web Server 
 app.listen(port,()=>{
     console.log(`The port is listening to ${port}`);
 });
