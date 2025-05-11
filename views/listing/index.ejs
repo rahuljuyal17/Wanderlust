@@ -1,12 +1,12 @@
 <% layout('layouts/boilerplate') -%>
 <body>
     <h1>Listings</h1>
-    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1">
     <% for(let listing of allistings){%>
     <a href="listings/<%= listing._id%>" class="listing-link">
     
-        <div class="card" style="width: 18rem;">
-        <img src="<%= listing.image && listing.image.url ? listing.image.url : 'https://via.placeholder.com/150' %>" class="card-img-top" alt="listing_image">
+        <div class="card col listing-card"  style="width: 18rem;">
+        <img src="<%= listing.image && listing.image.url ? listing.image.url : 'https://via.placeholder.com/150' %>" class="card-img-top" style="height:20rem" alt="listing_image">
         <div class="card-img-overlay"></div>
         <div class="card-body">
           <p class="card-text">

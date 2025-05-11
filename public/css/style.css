@@ -52,14 +52,14 @@ text-align: center;
     justify-content: center;
 }
 
-.card{
+.listing-card{
     border: none !important;
     margin-bottom: 2rem;
 }
 
 .card-img-top{
     border-radius:2rem !important;
-    width:100% imo !important;
+    width:100% !important;
     object-fit: cover !important;
 }
 
